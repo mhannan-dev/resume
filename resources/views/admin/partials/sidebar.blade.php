@@ -1,3 +1,7 @@
+@php
+    $prefix = Request::route()->getPrefix();
+    $route = Route::current()->getName();
+@endphp
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -28,12 +32,30 @@
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBlog"
+                <a class="nav-link collapsed" href="{{ route('blog.index') }}" data-toggle="collapse" data-target="#collapseBlog"
                     aria-expanded="true" aria-controls="collapseBlog">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Manage Blog</span>
                 </a>
                 <div id="collapseBlog" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Manage Blog:</h6>
+                        <a class="collapse-item {{($route=='blog.index')?'active':''}}" href="{{ route('blog.index') }}">Posts</a>
+                        
+                    </div>
+                </div>
+
+
+            </li>
+
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProfle"
+                    aria-expanded="true" aria-controls="collapseProfle">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Manage Profile</span>
+                </a>
+                <div id="collapseProfle" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Manage Blog:</h6>
                         <a class="collapse-item" href="{{ route('blog.index') }}">Posts</a>

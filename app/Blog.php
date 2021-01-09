@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Carbon;
 
-class Post extends Model
+class Blog extends Model
 {
 
     protected $table = 'posts';
@@ -37,4 +38,7 @@ class Post extends Model
     public function categories() {
         return $this->belongsTo('App\Category','category_id')->withDefault();
     }
+
+
+
 }

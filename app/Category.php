@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Post extends Model
+class Category extends Model
 {
 
-    protected $table = 'posts';
+    protected $table = 'categories';
     
 
     protected $fillable = ['title'];

@@ -762,15 +762,14 @@
             margin-right: 5px;
         }
         
+        .element-item img:hover {
+            background: #4a4141;
+            opacity: 0.6;
+        }
+        
         .element-item>* {
             margin: 0;
             padding: 0;
-        }
-        
-        .element-item .img .overlay {
-            -webkit-transform: scale(1);
-            -ms-transform: scale(1);
-            transform: scale(1);
         }
         
         .element-item h3 {
@@ -804,4 +803,17 @@
             left: 10px;
             top: 76px;
             font-size: 12px;
+        }
+        /*Custom css*/
+        
+        .modal_button {
+            margin-top: 5px !important;
+        }
+        
+        .form-control-sm {
+            height: calc(1.5em + .5rem + 2px);
+            padding: .25rem .5rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            border-radius: .4rem;
         }

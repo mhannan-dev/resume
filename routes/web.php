@@ -15,12 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::group(['prefix' => 'frontend'], function () {
+    Route::post('/send-message', 'ContactController@store')->name('save_contact');
+});
+
+
+
 Auth::routes();
 
 
 Route::group(array('middleware' => 'auth'), function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-    Route::resource('blog', 'PostController');
-
+    Route::resource('/blog', 'PostController')->except('show','update');
+    Route::post('/update/{id}', 'PostController@update')->name('blog.update');
 
 });

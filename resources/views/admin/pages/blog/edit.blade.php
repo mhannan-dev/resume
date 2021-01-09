@@ -1,9 +1,6 @@
 @extends('admin.master')
 @section('content')
     <div class="container-fluid">
-
-
-
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -13,8 +10,9 @@
 
             </div>
             <div class="card-body">
-                 <form action="{{ route('blog.store') }}" method="post" enctype="multipart/form-data">
-                    @include('admin.pages.blog._form', ['buttonText' => 'Save'])
+                 <form action="{{ route('blog.update', $blog->id) }}" method="post" enctype="multipart/form-data">
+                    {{-- @method('put') --}}
+                    @include('admin.pages.blog._form', ['buttonText' => 'Update'])
                     
                 </form>
             </div>
