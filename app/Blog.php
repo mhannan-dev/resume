@@ -2,17 +2,17 @@
 
 namespace App;
 
+use App\Category;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Carbon;
 
 class Blog extends Model
 {
 
     protected $table = 'posts';
-    
 
-    protected $fillable = ['title', 'body','category_id'];
+    protected $fillable = ['title', 'body', 'category_id'];
 
     public function setTitleAttribute($value)
     {
@@ -26,19 +26,18 @@ class Blog extends Model
         //return route("questions.show", $this->id);
         return route("questions.show", $this->slug);
 
-        
     }
     public function getCreatedDateAttribute()
     {
         //return $this->created_at->diffForHumans();
-        return Carbon\Carbon::parse( $this->created_at)->diffForHumans();
+        return Carbon::parse($this->created_at)->diffForHumans();
 
     }
 
-    public function categories() {
+   
+
+    public function category() {
         return $this->belongsTo('App\Category','category_id')->withDefault();
     }
-
-
 
 }

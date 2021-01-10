@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -11,7 +11,7 @@ class Category extends Model
     protected $table = 'categories';
     
 
-    protected $fillable = ['title'];
+    protected $fillable = ['title','slug'];
 
     public function setTitleAttribute($value)
     {
@@ -30,11 +30,15 @@ class Category extends Model
     public function getCreatedDateAttribute()
     {
         //return $this->created_at->diffForHumans();
-        return Carbon\Carbon::parse( $this->created_at)->diffForHumans();
+        return Carbon::parse( $this->created_at)->diffForHumans();
 
     }
 
-    public function categories() {
-        return $this->belongsTo('App\Category','category_id')->withDefault();
+
+
+
+    public function posts()
+    {
+        return $this->hasMany('App\Blog');
     }
 }

@@ -15,9 +15,10 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
             $table->string('slug');
             $table->tinyInteger('type')->comment('1 = Blog category, 2 = Project category')->default(1);
+            $table->tinyInteger('status')->comment('0=Draft, 1=Published')->default(1);
             $table->timestamps();
         });
     }

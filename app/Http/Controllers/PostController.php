@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use App\Category;
-use App\Http\Requests\Post\PostRequest;
+use App\Http\Requests\Backend\PostRequest;
 use App\Http\Traits\UploadTrait;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ use Intervention\Image\Facades\Image;
 class PostController extends Controller
 {
 
-    use UploadTrait;
+    
     public function __construct()
     {
         $this->middleware('auth');
@@ -27,7 +27,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data['posts'] = Blog::latest()->paginate(5);
+    
+        //$data['posts'] =  Blog::latest()->paginate(5);
+        $data['posts'] = Blog::with('category')->get();
         //dd($data['posts']);
         return view("admin.pages.blog.index", $data);
     }
@@ -39,7 +41,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $blog_category = Category::latest()->where('type' , '1')->get();
+        $blog_category = Category::latest()->where('type', '1')->get();
         $blog = new Blog();
 
         return view("admin.pages.blog.add", compact('blog_category', 'blog'));
@@ -137,8 +139,6 @@ class PostController extends Controller
         $post->update();
         //dd($post);
 
-    
-
         return redirect()->route('blog.index')->with('success', 'Your post has been updated!');
 
     }
@@ -153,6 +153,10 @@ class PostController extends Controller
     {
         //dd($blog);
         $blog->delete();
+
+        if (Storage::disk('public')->exists('post/' . $blog->image)) {
+            Storage::disk('public')->delete('post/' . $blog->image);
+        }
         if (request()->expectsJson()) {
             return response()->json([
                 'message' => "Your blog has been deleted.",

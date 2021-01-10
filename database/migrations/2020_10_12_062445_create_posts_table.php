@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->unsigned();;
+            $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('title', 100)->unique();
             $table->string('slug');
@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->unsignedTinyInteger('status')->comment('0=Draft, 1=Publish')->default(0);
             $table->timestamps();
+
         });
     }
 

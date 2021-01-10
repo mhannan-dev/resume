@@ -44,9 +44,24 @@
                         
                     </div>
                 </div>
-
-
             </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('category.index') }}" data-toggle="collapse" data-target="#collapseCategory"
+                    aria-expanded="true" aria-controls="collapseCategory">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Manage Category</span>
+                </a>
+                <div id="collapseCategory" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Category</h6>
+                        <a class="collapse-item {{($route=='category.index')? 'active':''}}" href="{{ route('category.index') }}">Category</a>
+                        
+                    </div>
+                </div>
+            </li>
+
 
             
             <li class="nav-item">

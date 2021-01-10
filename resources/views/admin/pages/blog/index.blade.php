@@ -33,56 +33,18 @@
 
                             @if (count($posts))
                                 @foreach ($posts as $key => $post)
-                                    <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <td>{{ $post['categories']['title'] }}</td>
-                                        <td>{{ $post->title }}</td>
 
-                                        <td>
-                                            @if ($post->status == '0')
-                                                <span class="badge badge-warning">Draft</span>
-
-                                            @else
-                                                <span class="badge badge-success">Publish</span>
-                                            @endif
-                                        </td>
-                                        <td>{{ $post->created_date }}</td>
-                                        <td>
-                                            <a title="Edit" href="{{ route('blog.edit', $post->id) }}"
-                                                class="btn btn-warning btn-sm">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-
-                                            <a title="Publish" href="" class="btn btn-success btn-sm">
-                                                <i class="fa fa-check"></i>
-                                            </a>
-
-
-                                            <form style="display: inline-block" class="form-delete" method="post"
-                                                action="{{ route('blog.destroy', $post->id) }}">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button type="submit" class="btn btn-sm btn-danger btn-sm"
-                                                    onclick="return confirm('Are you sure?')">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                                </form>
-
-
-                                            <a title="View" href="" class="btn btn-warning  btn-sm">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @else
                                 <tr>
-                                    <td colspan="5"> Opps!!,post Not found</td>
+                                    <td>{{ ++$key }}</td>
+                                    <td>{{ $post->category->title }}</td>
+                                    <td>{{ $post->title }}</td>
+                                    <td>asdfdsf</td>
+                                    <td>asdfdsf</td>
+                                    <td>asdfdsf</td>
                                 </tr>
-                            @endif
-
-
+                                @endforeach
+                           @endif
+                           
                         </tbody>
                     </table>
                 </div>
