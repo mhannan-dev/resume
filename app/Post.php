@@ -7,12 +7,16 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Blog extends Model
+
+
+class Post extends Model
 {
+    
+
 
     protected $table = 'posts';
 
-    protected $fillable = ['title', 'body', 'category_id'];
+    protected $fillable = ['title', 'body', 'category_id','tag_id'];
 
     public function setTitleAttribute($value)
     {
@@ -21,23 +25,22 @@ class Blog extends Model
 
     }
 
-    public function getUrlAttribute()
-    {
-        //return route("questions.show", $this->id);
-        return route("questions.show", $this->slug);
-
-    }
     public function getCreatedDateAttribute()
     {
-        //return $this->created_at->diffForHumans();
         return Carbon::parse($this->created_at)->diffForHumans();
-
     }
 
-   
 
     public function category() {
         return $this->belongsTo('App\Category','category_id')->withDefault();
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag', 'post_tag');
+
+
+        
     }
 
 }

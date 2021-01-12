@@ -11,10 +11,10 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a href="{{ route('post.create') }}" class="float-right btn btn-success">
+                <a href="{{ route('tag.create') }}" class="float-right btn btn-success">
                     <i class="fa fa-plus-circle"></i>
-                    Post</a>
-                <h6 class="m-0 font-weight-bold text-primary">Post List</h6>
+                    Tag </a>
+                <h6 class="m-0 font-weight-bold text-primary">Tag List</h6>
 
             </div>
             <div class="card-body">
@@ -22,39 +22,29 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th style="width: 5%">SL</th>
-                                <th>Category</th>
-                                
-                                <th>Title</th>
-                                <th style="width: 5%">Status</th>
-                                <th style="width: 15%">Publish on</th>
-                                <th class="width:15%">Action</th>
+                                <th>SL</th>
+                                <th>Tags</th>
+                                <th>Publish on</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @if (count($blogs))
-                                @foreach ($blogs as $key => $post)
-
-                                <tr>
-                                    <td>{{ ++$key }}</td>
-                                    <td>{{ $post->category->title }}</td>
-                                    
-                                    <td>
-                                        <a href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a>
-                                        
-                                    </td>
-                                    <td>asdfdsf</td>
-                                    <td>asdfdsf</td>
-                                    <td>
-                                            <a title="Edit" href="{{ route('post.edit', $post->id) }}"
+                            @if (count($tags))
+                                @foreach ($tags as $key => $tag)
+                                    <tr>
+                                        <td>{{ ++$key }}</td>
+                                        <td>{{ $tag['title'] }}</td>        
+                                        <td>{{ $tag->created_date }}</td>
+                                        <td>
+                                            <a title="Edit" href="{{ route('tag.edit', $tag->id) }}"
                                                 class="btn btn-warning btn-sm">
                                                 <i class="fa fa-edit"></i>
                                             </a>
 
                                         
                                             <form style="display: inline-block" class="form-delete" method="post"
-                                                action="{{ route('post.destroy', $post->id) }}">
+                                                action="{{ route('tag.destroy', $tag->id) }}">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-danger btn-sm"
@@ -66,10 +56,15 @@
 
 
                                         </td>
-                                </tr>
+                                    </tr>
                                 @endforeach
-                           @endif
-                           
+                            @else
+                                <tr>
+                                    <td colspan="5" class="text-danger"> Opps!! {{ $title }} Not found</td>
+                                </tr>
+                            @endif
+
+
                         </tbody>
                     </table>
                 </div>

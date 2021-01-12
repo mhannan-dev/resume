@@ -11,6 +11,21 @@
             @endforeach
         </select>
     </div>
+
+    <div class="form-group col-md-3">
+        <label for="tag_id">Tag</label>
+        
+        <select class="js-example-basic-multiple form-control" name="tags[]" multiple="multiple" style="width:100%;">
+            @foreach ($blog_tag as $tag)
+                <option value='{{ $tag->id }}'>{{ $tag->title }}</option>
+            @endforeach
+        </select>
+
+    </div>
+
+
+
+
     <div class="form-group col-md-3">
         <label for="title">Title</label>
         <input type="text" value="{{ old('title', $blog->title) }}" name="title"

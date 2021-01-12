@@ -25,6 +25,7 @@ class PostRequest extends FormRequest
     {
         return [
             'category_id' => 'required',
+            'tags' => 'required',
             'title' => 'required|unique:posts|max:255',
             'image' => 'required',
             'status' => 'required',

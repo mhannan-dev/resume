@@ -25,6 +25,7 @@
 
     <!-- Custom styles for this page -->
     <link href="{{ URL::asset('backend') }}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -73,6 +74,8 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ URL::asset('backend') }}/vendor/jquery/jquery.min.js"></script>
+    <!-- Select2-->
+    <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script src="{{ URL::asset('backend') }}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -87,6 +90,12 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ URL::asset('backend') }}/js/demo/datatables-demo.js"></script>
+     <script>
+          $(document).ready(function() {
+              $('.js-example-basic-multiple').select2();
+          });
+
+      </script>
 
 </body>
 

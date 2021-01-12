@@ -32,7 +32,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('blog.index') }}" data-toggle="collapse" data-target="#collapseBlog"
+                <a class="nav-link collapsed" href="{{ route('post.index') }}" data-toggle="collapse" data-target="#collapseBlog"
                     aria-expanded="true" aria-controls="collapseBlog">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Manage Blog</span>
@@ -40,7 +40,7 @@
                 <div id="collapseBlog" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Manage Blog:</h6>
-                        <a class="collapse-item {{($route=='blog.index')?'active':''}}" href="{{ route('blog.index') }}">Posts</a>
+                        <a class="collapse-item {{($route=='post.index')?'active':''}}" href="{{ route('post.index') }}">Posts</a>
                         
                     </div>
                 </div>
@@ -63,6 +63,23 @@
             </li>
 
 
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('tag.index') }}" data-toggle="collapse" data-target="#collapseTag"
+                    aria-expanded="true" aria-controls="collapseTag">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Manage Tags</span>
+                </a>
+                <div id="collapseTag" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Tag</h6>
+                        <a class="collapse-item {{($route=='tag.index')? 'active':''}}" href="{{ route('tag.index') }}">Tag</a>
+                        
+                    </div>
+                </div>
+            </li>
+
+
+
             
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProfle"
@@ -73,7 +90,7 @@
                 <div id="collapseProfle" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Manage Blog:</h6>
-                        <a class="collapse-item" href="{{ route('blog.index') }}">Posts</a>
+                        <a class="collapse-item" href="{{ route('post.index') }}">Posts</a>
                         
                     </div>
                 </div>

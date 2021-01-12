@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Blog;
+use App\Post;
 use App\Category;
 use App\Http\Requests\Backend\PostRequest;
-use App\Http\Traits\UploadTrait;
+use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -14,7 +14,6 @@ use Intervention\Image\Facades\Image;
 class PostController extends Controller
 {
 
-    
     public function __construct()
     {
         $this->middleware('auth');
@@ -27,10 +26,9 @@ class PostController extends Controller
      */
     public function index()
     {
-    
-        //$data['posts'] =  Blog::latest()->paginate(5);
-        $data['posts'] = Blog::with('category')->get();
-        //dd($data['posts']);
+
+        $data['blogs'] = Post::with('category')->get();
+        //dd($data['blogs']);
         return view("admin.pages.blog.index", $data);
     }
 
@@ -41,21 +39,23 @@ class PostController extends Controller
      */
     public function create()
     {
+        
         $blog_category = Category::latest()->where('type', '1')->get();
-        $blog = new Blog();
+        $blog_tag = Tag::all();
+        //dd($blog_tag);
 
-        return view("admin.pages.blog.add", compact('blog_category', 'blog'));
+        $blog = new Post();
+
+        return view("admin.pages.blog.add", compact('blog_category', 'blog_tag', 'blog'));
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PostRequest $request, Blog $post)
+   
+    public function store(PostRequest $request, Post $post)
     {
+
+
+        //dd($request);
         if ($request->has('image')) {
             $image = $request->file('image');
             $currentDate = Carbon::now()->toDateString();
@@ -75,18 +75,17 @@ class PostController extends Controller
         $post->status = $request->status;
         $post->image = $imageName;
         $post->save();
-        return redirect()->route('blog.index')->with('success', 'Your post has been submitted!');
+        $post->tags()->sync($request->tags, false);
+        
+
+        return redirect()->route('post.index')->with('success', 'Your post has been submitted!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Blog  $blog
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Blog $blog)
+
+    public function show(Post $post)
     {
-        //
+        
+        return view("admin.pages.blog.view",compact('post'));
     }
 
     /**
@@ -95,9 +94,9 @@ class PostController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit(Post $post)
     {
-        $blog_category = Category::latest()->get();
+        $blog_category = Category::all();
         $page_title = "Edit Post";
         return view("admin.pages.blog.edit", compact('page_title', 'blog_category', 'blog'));
     }
@@ -129,15 +128,13 @@ class PostController extends Controller
         } else {
             $imageName = "default.png";
         }
-        $post = Blog::find($id);
-        //dd($post);
-        $post->category_id = $request->category_id;
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->status = $request->status;
-        $post->image = $imageName;
-        $post->update();
-        //dd($post);
+        $blog = Post::find($id);
+        $blog->category_id = $request->category_id;
+        $blog->title = $request->title;
+        $blog->body = $request->body;
+        $blog->status = $request->status;
+        $blog->image = $imageName;
+        $blog->update();
 
         return redirect()->route('blog.index')->with('success', 'Your post has been updated!');
 
@@ -149,13 +146,12 @@ class PostController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy(Post $post)
     {
         //dd($blog);
-        $blog->delete();
-
-        if (Storage::disk('public')->exists('post/' . $blog->image)) {
-            Storage::disk('public')->delete('post/' . $blog->image);
+        $post->delete();
+        if (Storage::disk('public')->exists('post/' . $post->image)) {
+            Storage::disk('public')->delete('post/' . $post->image);
         }
         if (request()->expectsJson()) {
             return response()->json([
@@ -163,7 +159,7 @@ class PostController extends Controller
             ]);
         }
 
-        return redirect('/blog')->with('success', "Your blog has been deleted.");
+        return redirect('/post')->with('success', "Your blog has been deleted.");
 
     }
 }

@@ -20,25 +20,15 @@ class Category extends Model
 
     }
 
-    public function getUrlAttribute()
-    {
-        //return route("questions.show", $this->id);
-        return route("questions.show", $this->slug);
 
-        
-    }
     public function getCreatedDateAttribute()
     {
-        //return $this->created_at->diffForHumans();
         return Carbon::parse( $this->created_at)->diffForHumans();
 
     }
 
-
-
-
     public function posts()
     {
-        return $this->hasMany('App\Blog');
+        return $this->hasMany('App\Post');
     }
 }

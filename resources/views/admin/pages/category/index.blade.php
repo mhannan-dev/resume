@@ -11,7 +11,8 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a href="{{ route('category.create') }}" class="float-right btn btn-success"><i class="fa fa-plus-circle"></i>
+                <a href="{{ route('category.create') }}" class="float-right btn btn-success"><i
+                        class="fa fa-plus-circle"></i>
                     Category </a>
                 <h6 class="m-0 font-weight-bold text-primary">Category List</h6>
 
@@ -62,7 +63,7 @@
                                                 <i class="fa fa-edit"></i>
                                             </a>
 
-                                        
+
                                             <form style="display: inline-block" class="form-delete" method="post"
                                                 action="{{ route('category.destroy', $category->id) }}">
                                                 @method('DELETE')
@@ -71,20 +72,15 @@
                                                     onclick="return confirm('Are you sure?')">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
-                                                </form>
-
-
-
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="5"> Opps!!,post Not found</td>
+                                    <td colspan="7">No Category found</td>
                                 </tr>
                             @endif
-
-
                         </tbody>
                     </table>
                 </div>

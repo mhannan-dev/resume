@@ -63,7 +63,7 @@ class CategoryController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
+    public function show(Post $post)
     {
         //
     }
@@ -91,10 +91,8 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
-        //dd($post);
         $category->title = $request->title;
         $category->update();
-        //dd($post);
 
         return redirect()->route('category.index')->with('success', 'Your category has been updated!');
 
@@ -108,8 +106,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //dd($blog);
+        //dd($category);
         $category->delete();
+        //dd('Okay');
         $category->posts()->delete();
         if (request()->expectsJson()) {
             return response()->json([
