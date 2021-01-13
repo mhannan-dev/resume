@@ -89,8 +89,9 @@
                 </a>
                 <div id="collapseProfle" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Manage Blog:</h6>
-                        <a class="collapse-item" href="{{ route('post.index') }}">Posts</a>
+                        <h6 class="collapse-header">Manage Profile:</h6>
+                        <a class="collapse-item" href="{{ route('profile.view') }}">Profile</a>
+                        <a class="collapse-item" href="{{ route('profile.password_view') }}">Change Password</a>
                         
                     </div>
                 </div>

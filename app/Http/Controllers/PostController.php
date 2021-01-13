@@ -82,9 +82,11 @@ class PostController extends Controller
     }
 
 
-    public function show(Post $post)
+    public function show(Post $post, $slug)
     {
         
+        //return Post::find($slug);
+
         return view("admin.pages.blog.view",compact('post'));
     }
 
@@ -97,8 +99,10 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $blog_category = Category::all();
+        $tags = Tag::all();
+
         $page_title = "Edit Post";
-        return view("admin.pages.blog.edit", compact('page_title', 'blog_category', 'blog'));
+        return view("admin.pages.blog.edit", compact('page_title', 'blog_category', 'post','tags'));
     }
 
     /**

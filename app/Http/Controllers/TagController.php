@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Blog;
 use App\Tag;
+use App\Http\Requests\Backend\tagRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TagController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -19,9 +23,10 @@ class TagController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'Tags';
         $data['tags'] = Tag::latest()->paginate(5);
-        //dd($data['categories']);
+        $data['title'] = "All Tag";
+
+        //dd($data['tags']);
         return view("admin.pages.tag.index", $data);
     }
 
@@ -32,8 +37,8 @@ class TagController extends Controller
      */
     public function create()
     {
-        $tag = new Tag();
 
+        $tag = new Tag();
         return view("admin.pages.tag.add", compact('tag'));
 
     }
@@ -46,27 +51,19 @@ class TagController extends Controller
      */
     public function store(Request $request, Tag $tag)
     {
-
-        $request->validate([
-            'title' => 'required|unique:tags|max:255',
-            ]
-        );
-
+        //dd($request->all());
         $tag->title = $request->title;
         $tag->save();
-        
-
         return redirect()->route('tag.index')->with('success', 'Your tag has been submitted!');
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tag  $tag
+     * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag)
+    public function show(Post $post)
     {
         //
     }
@@ -74,41 +71,52 @@ class TagController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tag  $tag
+     * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
     public function edit(Tag $tag)
     {
-        //
+        $blog_tag = Tag::latest()->get();
+        $page_title = "Edit tag";
+        return view("admin.pages.tag.edit", compact('page_title', 'blog_tag', 'tag'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tag  $tag
+     * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, $id)
     {
-        //
+        $tag = Tag::find($id);
+        $tag->title = $request->title;
+        $tag->update();
+
+        return redirect()->route('tag.index')->with('success', 'Your tag has been updated!');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tag  $tag
+     * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
     public function destroy(Tag $tag)
     {
+        //dd($tag);
         $tag->delete();
-        $tag->posts()->delete();
+        //dd('Okay');
+        
         if (request()->expectsJson()) {
             return response()->json([
-                'message' => "Your category has been deleted.",
+                'message' => "Your tag has been deleted.",
             ]);
         }
+
+        return redirect('/tag')->with('success', "Your tag has been deleted.");
 
     }
 }

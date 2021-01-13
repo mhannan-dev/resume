@@ -25,7 +25,8 @@ class CategoryRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'type' => 'required' 
+            'type' => 'required',
+            'status' => 'required' 
 
         ];
         return $rules;
@@ -36,7 +37,9 @@ class CategoryRequest extends FormRequest
     {
         return [
             'title' => 'Please enter full name!',
-            'type' => 'Please select type'
+            'type' => 'Please select type',
+            'status' => 'Please select status',
+            
             
 
         ];

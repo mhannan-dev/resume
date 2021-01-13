@@ -53,6 +53,7 @@ class CategoryController extends Controller
         //dd($request->all());
         $category->title = $request->title;
         $category->status = $request->status;
+        $category->type = $request->type;
         $category->save();
         return redirect()->route('category.index')->with('success', 'Your category has been submitted!');
     }
@@ -92,6 +93,8 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $category->title = $request->title;
+        $category->status = $request->status;
+        $category->type = $request->type;
         $category->update();
 
         return redirect()->route('category.index')->with('success', 'Your category has been updated!');

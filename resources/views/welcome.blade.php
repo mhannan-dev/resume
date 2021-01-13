@@ -751,6 +751,10 @@
 
       <!-- Javascript -->
       <script type="text/javascript" src="{{ URL::asset('front') }}/assets/plugins/jquery-3.4.1.min.js"></script>
+      {{-- Animation Gsap --}}
+      {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js" integrity="sha512-5/OHwmQzDSBS0Ous4/hlYoWLHd06/d2r7LdKZQVBXOA6PvOqWVXtdboiLTU7lQTGyVoKVTNkwi0ol4gHGlw5ww==" crossorigin="anonymous"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js" integrity="sha512-RvUydNGlqYJapy0t4AH8hDv/It+zKsv4wOQGb+iOnEfa6NnF2fzjXgRy+FDjSpMfC3sjokNUzsfYZaZ8QAwIxg==" crossorigin="anonymous"></script> --}}
+
       <script type="text/javascript" src="{{ URL::asset('front') }}/assets/plugins/popper.min.js"></script>
       {{-- Form validation --}}
       <script type="text/javascript" src="{{ URL::asset('front') }}/assets/plugins/jquery.validate.min.js"></script>

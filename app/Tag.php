@@ -3,6 +3,8 @@
 namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 
 class Tag extends Model
 {
@@ -14,6 +16,12 @@ class Tag extends Model
     public function getCreatedDateAttribute()
     {
         return Carbon::parse( $this->created_at)->diffForHumans();
+
+    }
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
 
     }
 

@@ -49,10 +49,15 @@
                                         </td>
                                         <td>
                                             @if ($category->status == '1')
-                                                <span class="badge badge-success">Publish</span>
+                                                <span class="badge badge-success">    
+                                            <i class="fas fa-check-circle"></i>
+                                            </span>
 
                                             @else
-                                                <span class="badge badge-draft">Draft</span>
+                                            <span class="badge badge-danger">    
+                                            <i class="fas fa-times"></i> 
+                                            </span>
+                                            
                                             @endif
 
                                         </td>
