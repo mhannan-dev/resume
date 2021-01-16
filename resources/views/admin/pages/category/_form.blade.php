@@ -10,6 +10,13 @@
             <option value="2" {{ $category->type == '2' ? 'selected' : ' ' }}> Portfolio </option>
             
         </select>
+
+        @if ($errors->has('type'))
+            <div class="invalid-feedback">
+                <strong>{{ $errors->first('type') }}</strong>
+            </div>
+        @endif
+
     </div>
     <div class="form-group col-md-4">
         <label for="title">Title</label>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    
+
     <meta name="author" content="">
 
     <title>SB Admin 2 - Tables</title>
@@ -25,7 +24,11 @@
 
     <!-- Custom styles for this page -->
     <link href="{{ URL::asset('backend') }}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="//cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{{ URL::asset('backend') }}/css/style.css">
+
+
 
 </head>
 
@@ -45,7 +48,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-               @include('admin.partials.top_bar')
+                @include('admin.partials.top_bar')
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -70,7 +73,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ URL::asset('backend') }}/vendor/jquery/jquery.min.js"></script>
@@ -90,12 +93,26 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ URL::asset('backend') }}/js/demo/datatables-demo.js"></script>
-     <script>
-          $(document).ready(function() {
-              $('.js-example-basic-multiple').select2();
-          });
 
-      </script>
+    <!-- bootstrap datepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+
+    </script>
+
+    <script>
+        $(function () {
+            //Date picker
+            $('#datepicker').datepicker({
+                autoclose: true
+            })
+        })
+    </script>
+
 
 </body>
 

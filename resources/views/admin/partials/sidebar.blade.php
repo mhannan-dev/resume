@@ -92,6 +92,8 @@
                         <h6 class="collapse-header">Manage Profile:</h6>
                         <a class="collapse-item" href="{{ route('profile.view') }}">Profile</a>
                         <a class="collapse-item" href="{{ route('profile.password_view') }}">Change Password</a>
+                        <a class="collapse-item" href="{{ route('skill.index') }}">Skills</a>
+                        <a class="collapse-item" href="{{ route('experience.index') }}">Experience</a>
                         
                     </div>
                 </div>

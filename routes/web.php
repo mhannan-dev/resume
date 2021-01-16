@@ -32,6 +32,9 @@ Route::group(array('middleware' => 'auth'), function () {
     Route::get('/post/{slug}', 'PostController@show')->name('post.show');
     Route::resource('/category', 'CategoryController');
     Route::resource('/tag', 'TagController');
+    Route::resource('/skill', 'SkillController');
+    Route::resource('/experience', 'ExperienceController');
+
 });
 
 
