@@ -26,16 +26,12 @@
       <link rel="stylesheet" href="{{ URL::asset('front') }}/assets/plugins/github-calendar/dist/github-calendar.css" />
       <!-- github activity css -->
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css" />
-      <link rel="stylesheet"
-          href="{{ URL::asset('front') }}/assets/plugins/github-activity/github-activity-0.1.5.min.css" />
+      <link rel="stylesheet" href="{{ URL::asset('front') }}/assets/plugins/github-activity/github-activity-0.1.5.min.css" />
 
       <!-- Theme CSS -->
       <link id="theme-style" rel="stylesheet" href="{{ URL::asset('front') }}/assets/css/styles.css" />
 
       
-
-
-
   </head>
 
   <body>
@@ -45,8 +41,8 @@
               <img class="profile-image img-fluid float-left rounded-circle"
                   src="{{ URL::asset('front') }}/assets/images/profile.png" alt="profile image" />
               <div class="profile-content float-left">
-                  <h1 class="name">James Lee</h1>
-                  <h2 class="desc">Web App Developer</h2>
+                  <h1 class="name">M Hannan</h1>
+                  <h2 class="desc">Web Developer</h2>
                   <ul class="social list-inline">
                       <li class="list-inline-item">
                           <a href="#"><i class="fab fa-twitter"></i></a>
@@ -60,13 +56,7 @@
                       <li class="list-inline-item">
                           <a href="#"><i class="fab fa-stack-overflow"></i></a>
                       </li>
-                      <li class="list-inline-item last-item">
-                          <a href="#"><i class="fab fa-codepen"></i></a>
-                      </li>
-
-                      <li class="list-inline-item last-item">
-                          <a href="{{ route('login') }}"><i class="fab fa-codepen"></i>Login</a>
-                      </li>
+                     
                   </ul>
               </div>
               <!--//profile-->
@@ -184,8 +174,8 @@
 
                           <div>
                               <h2 class="heading">Latest Projects</h2>
-                              <div id="filters" class="button-group"> <button class="button is-checked"
-                                      data-filter="*">All</button>
+                              <div id="filters" class="button-group"> 
+                                  <button class="button is-checked" data-filter="*">All</button>
                                   <button class="button" data-filter=".metal">Frontend</button>
                                   <button class="button" data-filter=".transition">Laravel</button>
                                   <button class="button" data-filter=".alkali, .alkaline-earth">Mobile App</button>
@@ -239,18 +229,10 @@
                                       </a>
                                   </div>
 
-
-
-
                               </div>
                           </div>
 
                           <!-- isotope -->
-
-
-
-
-
 
                       </div>
                       <!--//section-inner-->
@@ -261,25 +243,27 @@
                       <div class="section-inner shadow-sm rounded">
                           <h2 class="heading">Blogs</h2>
                           <div class="content">
+                              @foreach ($posts as $post)
                               <div class="item">
                                   <h3 class="title">
-                                      <a href="https://themes.3rdwavemedia.com/bootstrap-templates/resume/free-bootstrap4-resume-cv-template-for-developers-pillar/"
-                                          target="_blank">Pillar - Free Boootstrap Resume/CV Template for
-                                          Developers</a>
-                                      <span class="badge badge-theme">Free</span>
+                                      <a href=""
+                                          target="_blank">{{ $post->title }}</a>
+                                          <a href="#">
+                                          <span class="badge badge-theme">
+                                              {{ $post['category']['title'] }}</span>
+                                              </a>
                                   </h3>
                                   <p class="summary">
-                                      Provide a brief description of your project. Ut enim ad
-                                      minima veniam, quis nostrum exercitationem ullam corporis
-                                      suscipit laboriosam, nisi ut aliquid ex ea commodi
-                                      consequatu.
+                                      {{ $post->body }}
                                   </p>
                                   <p>
                                       <a class="more-link"
-                                          href="https://themes.3rdwavemedia.com/bootstrap-templates/resume/free-bootstrap4-resume-cv-template-for-developers-pillar/"
-                                          target="_blank"><i class="fas fa-external-link-alt"></i>Download Now</a>
+                                          href="#"
+                                          target="_blank"><i class="fas fa-external-link-alt"></i>Readmore</a>
                                   </p>
                               </div>
+                                  
+                              @endforeach
                               <!--//item-->
                               <nav aria-label="Page navigation example">
                                   <ul class="pagination">
@@ -463,17 +447,21 @@
                           <div class="content">
                               <ul class="list-unstyled">
                                   <li>
-                                      <i class="fas fa-map-marker-alt"></i><span class="sr-only">Location:</span>San
-                                      Francisco, US
+                                      <i class="fas fa-map-marker-alt"></i>
+                                      <span class="sr-only">Location:</span>
+                                      Dhaka, Bangladesh
                                   </li>
                                   <li>
                                       <i class="fas fa-envelope"></i><span class="sr-only">Email:</span><a
-                                          href="#">jameslee@website.com</a>
+                                          href="#">mdhannan.info@gmail.com</a>
                                   </li>
+
                                   <li>
-                                      <i class="fas fa-link"></i><span class="sr-only">Website:</span><a
-                                          href="#">https://www.website.com</a>
+                                      <i class="fas fa-mobile"></i><span class="sr-only">Cell:</span><a
+                                          href="#">+8801744894452</a>
                                   </li>
+
+                                  
                               </ul>
                           </div>
                           <!--//content-->
@@ -714,7 +702,7 @@
                               <ul class="list-unstyled">
                                   <li>
                                       <i class="far fa-calendar-alt"></i>
-                                      <a href="#" target="_blank">WWDC 2020</a> (San Francisco)
+                                      <a href="#" target="_blank">WWDC 2020</a> (Dhaka)
                                   </li>
                                   <li>
                                       <i class="far fa-calendar-alt"></i>

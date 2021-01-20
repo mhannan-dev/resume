@@ -41,12 +41,12 @@ class PostController extends Controller
     {
         
         $blog_category = Category::latest()->where('type', '1')->get();
-        $blog_tag = Tag::all();
+        $tags = Tag::all();
         //dd($blog_tag);
 
-        $blog = new Post();
+        $post = new Post();
 
-        return view("admin.pages.blog.add", compact('blog_category', 'blog_tag', 'blog'));
+        return view("admin.pages.blog.add", compact('blog_category', 'tags', 'post'));
 
     }
 
@@ -140,7 +140,7 @@ class PostController extends Controller
         $blog->image = $imageName;
         $blog->update();
 
-        return redirect()->route('blog.index')->with('success', 'Your post has been updated!');
+        return redirect()->route('post.index')->with('success', 'Your post has been updated!');
 
     }
 

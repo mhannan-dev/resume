@@ -8,12 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 
-
 class Post extends Model
 {
     
-
-
     protected $table = 'posts';
 
     protected $fillable = ['title', 'body', 'category_id','tag_id'];

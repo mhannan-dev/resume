@@ -94,6 +94,7 @@
                         <a class="collapse-item" href="{{ route('profile.password_view') }}">Change Password</a>
                         <a class="collapse-item" href="{{ route('skill.index') }}">Skills</a>
                         <a class="collapse-item" href="{{ route('experience.index') }}">Experience</a>
+                        <a class="collapse-item" href="{{ route('project.index') }}">Project</a>
                         
                     </div>
                 </div>
