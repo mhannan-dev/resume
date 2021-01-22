@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Frontend\ContactRequest;
 use App\Post;
 use App\Category;
+use App\Project;
 
 
 class HomeController extends Controller
@@ -19,6 +20,8 @@ class HomeController extends Controller
     {
         $data['posts'] = Post::all();
         $data['project_category'] = Category::where('type', 2)->get();  
+        $data['projects'] = Project::all();  
+        //dd($data['projects']);
         
         return view('frontend.home_welcome', $data);
     }

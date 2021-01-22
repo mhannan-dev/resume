@@ -174,60 +174,21 @@
 
                           <div>
                               <h2 class="heading">Latest Projects</h2>
-                              <div id="filters" class="button-group"> 
-                                  <button class="button is-checked" data-filter="*">All</button>
-                                  <button class="button" data-filter=".metal">Frontend</button>
-                                  <button class="button" data-filter=".transition">Laravel</button>
-                                  <button class="button" data-filter=".alkali, .alkaline-earth">Mobile App</button>
-
+                              <div id="filters" class="button-group">
+                                <button class="button is-checked" data-filter="*">All</button>
+                                  @foreach ($project_category as $pro_cat)
+                                  <button class="button" data-filter=".cat_{{ $pro_cat->id }}">{{ $pro_cat->title }}</button>
+                                  @endforeach
                               </div>
-
                               <div class="grid">
-                                  <div class="element-item transition metal" data-category="transition">
-                                      <a href="">
-
-                                          <img src="{{ URL::asset('front') }}/assets/images/projects/1(6).jpg" alt="">
-                                          <h3 class="name">Project Name</h3>
-                                      </a>
-                                  </div>
-                                  <div class="element-item metalloid" data-category="metalloid">
-                                      <a href="">
-
-                                          <img src="{{ URL::asset('front') }}/assets/images/projects/1(5).jpg" alt="">
-                                          <h3>Project Name</h3>
-                                      </a>
-                                  </div>
-                                  <div class="element-item post-transition metal" data-category="post-transition">
-                                      <a href="">
-
-                                          <img src="{{ URL::asset('front') }}/assets/images/projects/1(4).jpg" alt="">
-                                          <h3>Project Name</h3>
-                                      </a>
-                                  </div>
-                                  <div class="element-item post-transition metal" data-category="post-transition">
-                                      <a href="">
-
-                                          <img src="{{ URL::asset('front') }}/assets/images/projects/1(3).jpg" alt="">
-                                          <h3>Project Name</h3>
-                                      </a>
-                                  </div>
-                                  <div class="element-item transition metal" data-category="transition">
-
-
-                                      <img class="imgs" src="{{ URL::asset('front') }}/assets/images/projects/1(2).jpg"
-                                          alt="">
-                                      <h3>Project Name</h3>
-
-                                  </div>
-                                  <div class="element-item alkali metal" data-category="alkali">
-
-                                      <a href="#">
-
-
-                                          <img src="{{ URL::asset('front') }}/assets/images/projects/1(1).jpg" alt="">
-                                          <h3 class="text-center">Project Name</h3>
-                                      </a>
-                                  </div>
+                                @foreach($projects as $project)
+                                <div class="element-item transition cat_{{ $project->category_id }}" data-category="transition">
+                                    <a href="">
+                                        <img src="{{ URL::asset('front') }}/assets/images/projects/1(6).jpg" alt="">
+                                        <h3 class="name">{{ $project->title }}</h3>
+                                    </a>
+                                </div>
+                                @endforeach
 
                               </div>
                           </div>
