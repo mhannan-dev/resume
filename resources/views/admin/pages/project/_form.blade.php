@@ -25,13 +25,13 @@
     </div>
     <div class="form-group col-md-3">
         <label for="image">Add Image</label>
-        <input type="file" class="form-control-file {{ $errors->has('image') ? 'is-invalid' : '' }}" id="image"
+        <input type="file" class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" id="image"
             name="image">
     </div>
 
     <div class="form-group col-md-3">
         <label for="url">Add Url</label>
-        <input type="text" class="form-control-file {{ $errors->has('url') ? 'is-invalid' : '' }}" id="url"
+        <input type="text" class="form-control {{ $errors->has('url') ? 'is-invalid' : '' }}" id="url"
             name="url">
     </div>
 

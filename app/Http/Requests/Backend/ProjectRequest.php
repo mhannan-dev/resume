@@ -24,7 +24,8 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:posts|max:255',
+            'category_id' => 'required',
+            'title' => 'required|unique:projects|max:255',
             'image' => 'required',
             'url' => 'required',
             'body' => 'required',
@@ -33,14 +34,14 @@ class ProjectRequest extends FormRequest
 
     }
 
-     public function messages()
+    public function messages()
     {
         return [
+            'category_id' => 'Please select category',
             'title' => 'Please enter title!',
             'image' => 'Please choose image!',
             'url' => 'Please input project URL!',
         ];
 
     }
-    
 }

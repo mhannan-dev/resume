@@ -3,7 +3,7 @@
   <html lang="en">
 
   <head>
-      <title>Boootstrap Portfolio/Resume Theme for Developers</title>
+      <title>Muhammad Hannan Laravel Devel</title>
       <!-- Meta -->
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,9 +12,9 @@
       <meta name="author" content="Xiaoying Riley at 3rd Wave Media" />
       <link rel="shortcut icon" href="favicon.ico" />
 
-      <link href="https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic" rel="stylesheet"
+      <link href="//fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic" rel="stylesheet"
           type="text/css" />
-      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+      <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
 
       <!-- FontAwesome JS -->
       <script defer src="{{ URL::asset('front') }}/assets/fontawesome/js/all.js"></script>
@@ -26,12 +26,13 @@
       <link rel="stylesheet" href="{{ URL::asset('front') }}/assets/plugins/github-calendar/dist/github-calendar.css" />
       <!-- github activity css -->
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css" />
-      <link rel="stylesheet" href="{{ URL::asset('front') }}/assets/plugins/github-activity/github-activity-0.1.5.min.css" />
+      <link rel="stylesheet"
+          href="{{ URL::asset('front') }}/assets/plugins/github-activity/github-activity-0.1.5.min.css" />
 
       <!-- Theme CSS -->
       <link id="theme-style" rel="stylesheet" href="{{ URL::asset('front') }}/assets/css/styles.css" />
 
-      
+
   </head>
 
   <body>
@@ -39,7 +40,8 @@
       <header class="header">
           <div class="container clearfix">
               <img class="profile-image img-fluid float-left rounded-circle"
-                  src="{{ URL::asset('front') }}/assets/images/profile.png" alt="profile image" />
+                  src="{{ URL::asset('front') }}/assets/images/profile2.png" alt="profile image"
+                  style="width: 150px;" />
               <div class="profile-content float-left">
                   <h1 class="name">M Hannan</h1>
                   <h2 class="desc">Web Developer</h2>
@@ -56,7 +58,7 @@
                       <li class="list-inline-item">
                           <a href="#"><i class="fab fa-stack-overflow"></i></a>
                       </li>
-                     
+
                   </ul>
               </div>
               <!--//profile-->
@@ -152,13 +154,7 @@
                           <h2 class="heading">About Me</h2>
                           <div class="content">
                               <p>
-                                  Write a brief intro about yourself. It's a good idea to
-                                  include your personal interests and hobbies as well. Lorem
-                                  ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                                  commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                  penatibus et magnis dis parturient montes, nascetur ridiculus
-                                  mus. Donec quam felis, ultricies nec. Commodo ligula eget
-                                  dolor. Aenean massa.
+                                  {{ $user->about }}
                               </p>
                           </div>
                           <!--//content-->
@@ -169,26 +165,26 @@
 
                   <section class="latest section">
                       <div class="section-inner shadow-sm rounded">
-
-
-
                           <div>
                               <h2 class="heading">Latest Projects</h2>
                               <div id="filters" class="button-group">
-                                <button class="button is-checked" data-filter="*">All</button>
+                                  <button class="button is-checked" data-filter="*">All</button>
                                   @foreach ($project_category as $pro_cat)
-                                  <button class="button" data-filter=".cat_{{ $pro_cat->id }}">{{ $pro_cat->title }}</button>
+                                      <button class="button"
+                                          data-filter=".cat_{{ $pro_cat->id }}">{{ $pro_cat->title }}</button>
                                   @endforeach
                               </div>
                               <div class="grid">
-                                @foreach($projects as $project)
-                                <div class="element-item transition cat_{{ $project->category_id }}" data-category="transition">
-                                    <a href="">
-                                        <img src="{{ URL::asset('front') }}/assets/images/projects/1(6).jpg" alt="">
-                                        <h3 class="name">{{ $project->title }}</h3>
-                                    </a>
-                                </div>
-                                @endforeach
+                                  @foreach ($projects as $project)
+                                      <div class="element-item transition cat_{{ $project->category_id }}"
+                                          data-category="transition">
+                                          <a href="{{ $project->url }}" target="_blank">
+                                              <img src="{{ asset('/storage/project/' . $project->image) }}"
+                                                  alt="{{ $project->title }}" class="img-thumbnail"
+                                                  style="width:200px;">
+                                          </a>
+                                      </div>
+                                  @endforeach
 
                               </div>
                           </div>
@@ -205,25 +201,23 @@
                           <h2 class="heading">Blogs</h2>
                           <div class="content">
                               @foreach ($posts as $post)
-                              <div class="item">
-                                  <h3 class="title">
-                                      <a href=""
-                                          target="_blank">{{ $post->title }}</a>
+                                  <div class="item">
+                                      <h3 class="title">
+                                          <a href="" target="_blank">{{ $post->title }}</a>
                                           <a href="#">
-                                          <span class="badge badge-theme">
-                                              {{ $post['category']['title'] }}</span>
-                                              </a>
-                                  </h3>
-                                  <p class="summary">
-                                      {{ $post->body }}
-                                  </p>
-                                  <p>
-                                      <a class="more-link"
-                                          href="#"
-                                          target="_blank"><i class="fas fa-external-link-alt"></i>Readmore</a>
-                                  </p>
-                              </div>
-                                  
+                                              <span class="badge badge-theme">
+                                                  {{ $post['category']['title'] }}</span>
+                                          </a>
+                                      </h3>
+                                      <p class="summary">
+                                          {{ $post->body }}
+                                      </p>
+                                      <p>
+                                          <a class="more-link" href="#" target="_blank"><i
+                                                  class="fas fa-external-link-alt"></i>Readmore</a>
+                                      </p>
+                                  </div>
+
                               @endforeach
                               <!--//item-->
                               <nav aria-label="Page navigation example">
@@ -410,19 +404,19 @@
                                   <li>
                                       <i class="fas fa-map-marker-alt"></i>
                                       <span class="sr-only">Location:</span>
-                                      Dhaka, Bangladesh
+                                      {{ $user->address }}
                                   </li>
                                   <li>
                                       <i class="fas fa-envelope"></i><span class="sr-only">Email:</span><a
-                                          href="#">mdhannan.info@gmail.com</a>
+                                          href="#"> {{ $user->email }}</a>
                                   </li>
 
                                   <li>
                                       <i class="fas fa-mobile"></i><span class="sr-only">Cell:</span><a
-                                          href="#">+8801744894452</a>
+                                          href="#">+88{{ $user->mobile }}</a>
                                   </li>
 
-                                  
+
                               </ul>
                           </div>
                           <!--//content-->
@@ -701,8 +695,13 @@
       <!-- Javascript -->
       <script type="text/javascript" src="{{ URL::asset('front') }}/assets/plugins/jquery-3.4.1.min.js"></script>
       {{-- Animation Gsap --}}
-      {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js" integrity="sha512-5/OHwmQzDSBS0Ous4/hlYoWLHd06/d2r7LdKZQVBXOA6PvOqWVXtdboiLTU7lQTGyVoKVTNkwi0ol4gHGlw5ww==" crossorigin="anonymous"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js" integrity="sha512-RvUydNGlqYJapy0t4AH8hDv/It+zKsv4wOQGb+iOnEfa6NnF2fzjXgRy+FDjSpMfC3sjokNUzsfYZaZ8QAwIxg==" crossorigin="anonymous"></script> --}}
+      {{-- <script
+          src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"
+          integrity="sha512-5/OHwmQzDSBS0Ous4/hlYoWLHd06/d2r7LdKZQVBXOA6PvOqWVXtdboiLTU7lQTGyVoKVTNkwi0ol4gHGlw5ww=="
+          crossorigin="anonymous"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js"
+          integrity="sha512-RvUydNGlqYJapy0t4AH8hDv/It+zKsv4wOQGb+iOnEfa6NnF2fzjXgRy+FDjSpMfC3sjokNUzsfYZaZ8QAwIxg=="
+          crossorigin="anonymous"></script> --}}
 
       <script type="text/javascript" src="{{ URL::asset('front') }}/assets/plugins/popper.min.js"></script>
       {{-- Form validation --}}
@@ -722,7 +721,7 @@
       <script type="text/javascript" src="{{ URL::asset('front') }}/assets/js/main.js"></script>
 
       <script src="//unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-      
+
       <script type="text/javascript">
           // external js: isotope.pkgd.js
 
@@ -785,7 +784,7 @@
 
       </script>
 
-     
+
       <!-- Page specific script -->
       <script>
           $(function() {

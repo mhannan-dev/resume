@@ -16,11 +16,9 @@ class ProfileController extends Controller
 
     public function getIndex()
     {
-        $id = Auth::user()->id;
-        //dd($id);
-        $data['user'] = User::find($id);
-        //dd($data);
-        return view('admin.pages.user.view_profile', $data);
+        $user = User::find(Auth::user()->id);
+        //dd($user);
+        return view('admin.pages.user.view_profile', compact('user'));
     }
 
     public function getEdit($id)

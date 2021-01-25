@@ -24,7 +24,7 @@
                             <tr>
                                 <th style="width: 5%">SL</th>
                                 <th>Category</th>
-                                
+
                                 <th>Title</th>
                                 <th style="width: 5%">Status</th>
                                 <th style="width: 15%">Publish on</th>
@@ -38,11 +38,11 @@
 
                                 <tr>
                                     <td>{{ ++$key }}</td>
-                                    <td>{{ $post->category->title }}</td>
-                                    
+                                    <td>{{ $post->title }}</td>
+
                                     <td>
                                         <a href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a>
-                                        
+
                                     </td>
                                     <td>asdfdsf</td>
                                     <td>asdfdsf</td>
@@ -52,7 +52,7 @@
                                                 <i class="fa fa-edit"></i>
                                             </a>
 
-                                        
+
                                             <form style="display: inline-block" class="form-delete" method="post"
                                                 action="{{ route('post.destroy', $post->id) }}">
                                                 @method('DELETE')
@@ -69,7 +69,7 @@
                                 </tr>
                                 @endforeach
                            @endif
-                           
+
                         </tbody>
                     </table>
                 </div>

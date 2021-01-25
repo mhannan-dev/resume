@@ -13,9 +13,9 @@
 
             </div>
             <div class="card-body">
-                 <form action="{{ route('project.store') }}" method="project" enctype="multipart/form-data">
+                 <form action="{{ route('project.store') }}" method="post" enctype="multipart/form-data">
                     @include('admin.pages.project._form', ['buttonText' => 'Save'])
-                    
+
                 </form>
             </div>
         </div>

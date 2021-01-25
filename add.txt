@@ -1,0 +1,6 @@
+mhannan.xyz info
+
+DB_DATABASE=bdinfo_resume
+DB_USERNAME=bdinfo_res_user
+DB_PASSWORD=bdinfo_pass_#12
+

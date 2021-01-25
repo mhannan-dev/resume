@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Requests\Backend\ProjectRequest;
 use App\Project;
-use App\Category;
-
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ProjectController extends Controller
 {
@@ -16,7 +18,6 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
     {
         $data['title'] = "Project";
         $data['projects'] = Project::all();
@@ -33,25 +34,49 @@ class ProjectController extends Controller
     {
         $project = new Project();
         $data['project_category'] = Category::where('type', 2)->get();
-        return view("admin.pages.project.add",$data, compact('project'));
+        return view("admin.pages.project.add", $data, compact('project'));
 
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProjectRequest $request)
+    public function store(ProjectRequest $request, Project $project)
     {
-        dd($request);
+    
+        //dd($request);
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $currentDate = Carbon::now()->toDateString();
+            $imageName = $currentDate . '-' . rand(1, 100) . '.' . $image->getClientOriginalExtension();
+            if (!Storage::disk('public')->exists('project')) {
+                Storage::disk('public')->makeDirectory('project');
+            }
+            $postImage = Image::make($image)->resize(300, 300)->save(storage_path('project'));
+            Storage::disk('public')->put('project/' . $imageName, $postImage);
+        } else {
+            $imageName = "default.png";
+        }
+
+        $project->category_id = $request->category_id;
+        $project->title = $request->title;
+        $project->body = $request->body;
+        $project->url = $request->url;
+        $project->image = $imageName;
+        $project->save();
+
+
+        return redirect()->route('project.index')->with('success', 'Your project has been submitted!');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param \App\Project $project
      * @return \Illuminate\Http\Response
      */
     public function show(Project $project)
@@ -62,7 +87,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param \App\Project $project
      * @return \Illuminate\Http\Response
      */
     public function edit(Project $project)
@@ -73,8 +98,8 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Project  $project
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Project $project
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Project $project)
@@ -85,7 +110,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Project  $project
+     * @param \App\Project $project
      * @return \Illuminate\Http\Response
      */
     public function destroy(Project $project)

@@ -763,7 +763,7 @@
         }
         
         .element-item img:hover {
-            background: #4a4141;
+            background: transparent;
             opacity: 0.6;
         }
         
