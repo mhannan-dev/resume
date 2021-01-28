@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use App\Post;
 use App\Category;
-use App\Http\Requests\Backend\PostRequest;
-use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Backend\PostRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -74,6 +75,8 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->status = $request->status;
         $post->image = $imageName;
+        $post->created_by = Auth::user()->id;
+
         $post->save();
         $post->tags()->sync($request->tags, false);
         

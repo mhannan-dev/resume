@@ -149,20 +149,8 @@
       <div class="container sections-wrapper">
           <div class="row">
               <div class="primary col-lg-8 col-12">
-                  <section class="about section">
-                      <div class="section-inner shadow-sm rounded">
-                          <h2 class="heading">About Me</h2>
-                          <div class="content">
-                              <p>
-                                  {{ $user->about }}
-                              </p>
-                          </div>
-                          <!--//content-->
-                      </div>
-                      <!--//section-inner-->
-                  </section>
+                  @include('frontend.parts.about')
                   <!--//section-->
-
                   <section class="latest section">
                       <div class="section-inner shadow-sm rounded">
                           <div>
@@ -185,17 +173,13 @@
                                           </a>
                                       </div>
                                   @endforeach
-
                               </div>
                           </div>
-
                           <!-- isotope -->
-
                       </div>
                       <!--//section-inner-->
                   </section>
                   <!--//section-->
-
                   <section class="projects section">
                       <div class="section-inner shadow-sm rounded">
                           <h2 class="heading">Blogs</h2>
@@ -222,21 +206,8 @@
                               <!--//item-->
                               <nav aria-label="Page navigation example">
                                   <ul class="pagination">
-                                      <li class="page-item">
-                                          <a class="page-link" href="#" aria-label="Previous">
-                                              <span aria-hidden="true">&laquo;</span>
-                                              <span class="sr-only">Previous</span>
-                                          </a>
-                                      </li>
-                                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                      <li class="page-item">
-                                          <a class="page-link" href="#" aria-label="Next">
-                                              <span aria-hidden="true">&raquo;</span>
-                                              <span class="sr-only">Next</span>
-                                          </a>
-                                      </li>
+                                      
+                                      {{ $posts->links() }}
                                   </ul>
                               </nav>
 
@@ -321,49 +292,27 @@
                       <div class="section-inner shadow-sm rounded">
                           <h2 class="heading">Work Experience</h2>
                           <div class="content">
+
+                            @foreach ($experiences as $experience)
+                                
+                            
                               <div class="item">
                                   <h3 class="title">
-                                      Co-Founder & Lead Developer -
-                                      <span class="place"><a href="#">Startup Hub</a></span>
-                                      <span class="year">(2014 - Present)</span>
+                                      {{ $experience->designation }} -
+                                      <span class="place">{{ $experience->company_name }}</span>
+                                      <span class="year">({{ $experience->joining_date }} - Present)</span>
                                   </h3>
                                   <p>
-                                      Aenean leo ligula, porttitor eu, consequat vitae, eleifend
-                                      ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
-                                      feugiat a, tellus. Phasellus viverra nulla ut metus varius
-                                      laoreet. Donec vitae sapien ut libero venenatis faucibus.
-                                      Nullam quis ante. Etiam sit amet orci eget eros faucibus
-                                      tincidunt.
-                                  </p>
-                              </div>
-                              <!--//item-->
-                              <div class="item">
-                                  <h3 class="title">
-                                      Software Engineer -
-                                      <span class="place"><a href="#">Google</a></span>
-                                      <span class="year">(2013 - 2014)</span>
-                                  </h3>
-                                  <p>
-                                      Vivamus a tortor eu turpis pharetra consequat quis non
-                                      metus. Aliquam aliquam, orci eu suscipit pellentesque,
-                                      mauris dui tincidunt enim. Sed fringilla mauris sit amet
-                                      nibh. Donec sodales sagittis magna.
+                                      {{ $experience->company_details }}
                                   </p>
                               </div>
                               <!--//item-->
 
-                              <div class="item">
-                                  <h3 class="title">
-                                      Software Engineer -
-                                      <span class="place"><a href="#">eBay</a></span>
-                                      <span class="year">(2012 - 2013)</span>
-                                  </h3>
-                                  <p>
-                                      Maecenas tempus, tellus eget condimentum rhoncus, sem quam
-                                      semper libero, sit amet adipiscing sem neque sed ipsum.
-                                  </p>
-                              </div>
-                              <!--//item-->
+
+                              @endforeach
+                              
+
+                             
                           </div>
                           <!--//content-->
                       </div>
@@ -382,12 +331,7 @@
 
                           <!--//github-graph-->
 
-
                           <div id="ghfeed" class="ghfeed"></div>
-
-
-
-
                           <!--//ghfeed-->
                       </div>
                       <!--//secton-inner-->
@@ -395,284 +339,7 @@
                   <!--//section-->
               </div>
               <!--//primary-->
-              <div class="secondary col-lg-4 col-12">
-                  <aside class="info aside section">
-                      <div class="section-inner shadow-sm rounded">
-                          <h2 class="heading sr-only">Basic Information</h2>
-                          <div class="content">
-                              <ul class="list-unstyled">
-                                  <li>
-                                      <i class="fas fa-map-marker-alt"></i>
-                                      <span class="sr-only">Location:</span>
-                                      {{ $user->address }}
-                                  </li>
-                                  <li>
-                                      <i class="fas fa-envelope"></i><span class="sr-only">Email:</span><a
-                                          href="#"> {{ $user->email }}</a>
-                                  </li>
-
-                                  <li>
-                                      <i class="fas fa-mobile"></i><span class="sr-only">Cell:</span><a
-                                          href="#">+88{{ $user->mobile }}</a>
-                                  </li>
-
-
-                              </ul>
-                          </div>
-                          <!--//content-->
-                      </div>
-                      <!--//section-inner-->
-                  </aside>
-                  <!--//aside-->
-
-                  <aside class="skills aside section">
-                      <div class="section-inner shadow-sm rounded">
-                          <h2 class="heading">Skills</h2>
-                          <div class="content">
-                              <p class="intro">
-                                  Intro about your skills goes here. Keep the list lean and only
-                                  show your primary skillset. You can always provide a link to
-                                  your Linkedin or Github profile so people can get more info
-                                  there.
-                              </p>
-
-                              <div class="skillset">
-                                  <div class="item">
-                                      <h3 class="level-title">
-                                          Python &amp; Django<span class="level-label" data-toggle="tooltip"
-                                              data-placement="left" data-animation="true"
-                                              title="You can use the tooltip to explain more about your skill level..."><i
-                                                  class="fas fa-info-circle"></i>Expert</span>
-                                      </h3>
-                                      <div class="level-bar">
-                                          <div class="level-bar-inner" data-level="96%"></div>
-                                      </div>
-                                      <!--//level-bar-->
-                                  </div>
-                                  <!--//item-->
-
-                                  <div class="item">
-                                      <h3 class="level-title">
-                                          Javascript &amp; jQuery<span class="level-label" data-toggle="tooltip"
-                                              data-placement="left" data-animation="true"
-                                              title="You can use the tooltip to explain more about your skill level..."><i
-                                                  class="fas fa-info-circle"></i>Expert</span>
-                                      </h3>
-                                      <div class="level-bar">
-                                          <div class="level-bar-inner" data-level="96%"></div>
-                                      </div>
-                                      <!--//level-bar-->
-                                  </div>
-                                  <!--//item-->
-
-                                  <div class="item">
-                                      <h3 class="level-title">
-                                          HTML5, CSS3, SASS &amp; LESS<span class="level-label" data-toggle="tooltip"
-                                              data-placement="left" data-animation="true"
-                                              title="You can use the tooltip to explain more about your skill level..."><i
-                                                  class="fas fa-info-circle"></i>Expert</span>
-                                      </h3>
-                                      <div class="level-bar">
-                                          <div class="level-bar-inner" data-level="96%"></div>
-                                      </div>
-                                      <!--//level-bar-->
-                                  </div>
-                                  <!--//item-->
-
-                                  <div class="item">
-                                      <h3 class="level-title">
-                                          Ruby on Rails<span class="level-label" data-toggle="tooltip"
-                                              data-placement="left" data-animation="true"
-                                              title="You can use the tooltip to explain more about your skill level..."><i
-                                                  class="fas fa-info-circle"></i>Pro</span>
-                                      </h3>
-                                      <div class="level-bar">
-                                          <div class="level-bar-inner" data-level="85%"></div>
-                                      </div>
-                                      <!--//level-bar-->
-                                  </div>
-                                  <!--//item-->
-
-
-                              </div>
-                          </div>
-                          <!--//content-->
-                      </div>
-                      <!--//section-inner-->
-                  </aside>
-                  <!--//section-->
-                  <aside class="credits aside section">
-                      <div class="section-inner shadow-sm rounded">
-                          <h2 class="heading">Software And Tools</h2>
-                          <div class="content">
-                              <ul class="list-unstyled pb-2">
-                                  <li>
-                                      <a href="https://getbootstrap.com/" target="_blank"><i
-                                              class="fas fa-external-link-alt"></i>Bootstrap</a>
-                                  </li>
-                                  <li>
-                                      <a href="https://fortawesome.github.io/Font-Awesome/" target="_blank"><i
-                                              class="fas fa-external-link-alt"></i>FontAwesome</a>
-                                  </li>
-                                  <li>
-                                      <a href="https://jquery.com/" target="_blank"><i
-                                              class="fas fa-external-link-alt"></i>jQuery</a>
-                                  </li>
-                                  <li>
-                                      <a href="https://github.com/IonicaBizau/github-calendar" target="_blank"><i
-                                              class="fas fa-external-link-alt"></i>GitHub Calendar
-                                          Plugin</a>
-                                  </li>
-
-                                  <li>
-                                      <a href="https://caseyscarborough.com/projects/github-activity/"
-                                          target="_blank"><i class="fas fa-external-link-alt"></i>GitHub Activity
-                                          Stream</a>
-                                  </li>
-
-                                  <li>
-                                      <a href="https://github.com/sdepold/jquery-rss" target="_blank"><i
-                                              class="fas fa-external-link-alt"></i>jQuery RSS</a>
-                                  </li>
-
-                                  <li>
-                                      Profile image:
-                                      <a href="https://www.flickr.com/photos/dotbenjamin/2577394151" target="_blank">Ben
-                                          Smith</a>
-                                  </li>
-                              </ul>
-
-                              <hr />
-
-
-
-
-
-                              <a class="btn btn-cta-secondary btn-follow" href="https://twitter.com/3rdwave_themes"
-                                  target="_blank"><i class="fab fa-twitter"></i> Follow on twitter</a>
-                          </div>
-                          <!--//content-->
-                      </div>
-                      <!--//section-inner-->
-                  </aside>
-                  <!--//section-->
-
-                  <aside class="testimonials aside section">
-                      <div class="section-inner shadow-sm rounded">
-                          <h2 class="heading">Testimonials</h2>
-                          <div class="content">
-                              <div class="item">
-                                  <blockquote class="quote">
-                                      <p>
-                                          <i class="fas fa-quote-left"></i>James is an excellent
-                                          software engineer and he is passionate about what he does.
-                                          You can totally count on him to deliver your projects!
-                                      </p>
-                                  </blockquote>
-                                  <p class="source">
-                                      <span class="name">Tim Adams</span><br /><span class="title">Curabitur
-                                          commodo</span>
-                                  </p>
-                              </div>
-                              <!--//item-->
-
-                              <p>
-                                  <a class="more-link" href="#"><i class="fas fa-external-link-alt"></i>More on
-                                      Linkedin</a>
-                              </p>
-                          </div>
-                          <!--//content-->
-                      </div>
-                      <!--//section-inner-->
-                  </aside>
-                  <!--//section-->
-
-                  <aside class="education aside section">
-                      <div class="section-inner shadow-sm rounded">
-                          <h2 class="heading">Education</h2>
-                          <div class="content">
-                              <div class="item">
-                                  <h3 class="title">
-                                      <i class="fas fa-graduation-cap"></i> MSc Computer Science
-                                  </h3>
-                                  <h4 class="university">
-                                      University College London
-                                      <span class="year">(2011-2012)</span>
-                                  </h4>
-                              </div>
-                              <!--//item-->
-                              <div class="item">
-                                  <h3 class="title">
-                                      <i class="fas fa-graduation-cap"></i> BSc Computer Science
-                                  </h3>
-                                  <h4 class="university">
-                                      University of Bristol <span class="year">(2008-2011)</span>
-                                  </h4>
-                              </div>
-                              <!--//item-->
-                          </div>
-                          <!--//content-->
-                      </div>
-                      <!--//section-inner-->
-                  </aside>
-                  <!--//section-->
-
-                  <aside class="languages aside section">
-                      <div class="section-inner shadow-sm rounded">
-                          <h2 class="heading">Languages</h2>
-                          <div class="content">
-                              <ul class="list-unstyled">
-                                  <li class="item">
-                                      <span class="title"><strong>English:</strong></span>
-                                      <span class="level">Native Speaker <br class="visible-xs" /><i
-                                              class="fas fa-star"></i>
-                                          <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                                          <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                                      </span>
-                                  </li>
-                                  <!--//item-->
-                                  <li class="item">
-                                      <span class="title"><strong>Spanish:</strong></span>
-                                      <span class="level">Professional Proficiency
-                                          <br class="visible-sm visible-xs" /><i class="fas fa-star"></i>
-                                          <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                                          <i class="fas fa-star-half"></i></span>
-                                  </li>
-                                  <!--//item-->
-                              </ul>
-                          </div>
-                          <!--//content-->
-                      </div>
-                      <!--//section-inner-->
-                  </aside>
-                  <!--//section-->
-
-
-
-
-                  <aside class="list conferences aside section">
-                      <div class="section-inner shadow-sm rounded">
-                          <h2 class="heading">Certifications</h2>
-                          <div class="content">
-                              <ul class="list-unstyled">
-                                  <li>
-                                      <i class="far fa-calendar-alt"></i>
-                                      <a href="#" target="_blank">WWDC 2020</a> (Dhaka)
-                                  </li>
-                                  <li>
-                                      <i class="far fa-calendar-alt"></i>
-                                      <a href="#">Hive</a> (Seattle)
-                                  </li>
-                              </ul>
-                          </div>
-                          <!--//content-->
-                      </div>
-                      <!--//section-inner-->
-                  </aside>
-                  <!--//section-->
-
-
-              </div>
+             @include('frontend.parts.primary_info')
               <!--//secondary-->
           </div>
           <!--//row-->
@@ -694,14 +361,7 @@
 
       <!-- Javascript -->
       <script type="text/javascript" src="{{ URL::asset('front') }}/assets/plugins/jquery-3.4.1.min.js"></script>
-      {{-- Animation Gsap --}}
-      {{-- <script
-          src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"
-          integrity="sha512-5/OHwmQzDSBS0Ous4/hlYoWLHd06/d2r7LdKZQVBXOA6PvOqWVXtdboiLTU7lQTGyVoKVTNkwi0ol4gHGlw5ww=="
-          crossorigin="anonymous"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js"
-          integrity="sha512-RvUydNGlqYJapy0t4AH8hDv/It+zKsv4wOQGb+iOnEfa6NnF2fzjXgRy+FDjSpMfC3sjokNUzsfYZaZ8QAwIxg=="
-          crossorigin="anonymous"></script> --}}
+     
 
       <script type="text/javascript" src="{{ URL::asset('front') }}/assets/plugins/popper.min.js"></script>
       {{-- Form validation --}}

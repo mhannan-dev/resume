@@ -3,6 +3,7 @@
 Route::get('/', 'HomeController@index')->name('frontend.home');
 Route::post('/send-message', 'ContactController@store')->name('save_contact');
 
+Auth::routes(['register' => false]);
 
 Auth::routes();
 Route::group(array('middleware' => 'auth'), function () {
@@ -12,17 +13,12 @@ Route::group(array('middleware' => 'auth'), function () {
     Route::post('/update/{id}', 'PostController@update')->name('post.update');
     Route::get('/post/{slug}', 'PostController@show')->name('post.show');
     // Post
-
     Route::resource('/category', 'CategoryController');
     Route::resource('/tag', 'TagController');
     Route::resource('/skill', 'SkillController');
     Route::resource('/experience', 'ExperienceController');
     Route::resource('/project', 'ProjectController');
-
-    
-
 });
-
 
 
 Route::group(['prefix' => 'user'], function () {

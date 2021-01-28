@@ -16,8 +16,10 @@ class CreateExperiencesTable extends Migration
         Schema::create('experiences', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('company_name', 255)->unique();
-            $table->string('designation', 255)->unique();
-            $table->date('job_start_from');
+            $table->string('designation', 255)->nullable();
+            $table->year('joining_date')->nullable();
+            $table->year('last_working_day')->nullable();
+            $table->text('company_details')->nullable();
             $table->timestamps();
         });
     }
